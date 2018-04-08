@@ -1,0 +1,40 @@
+{
+  "name": "ivan-chkv/yii2-gii-plus",
+  "description": "Yii 2 Gii Plus Extension",
+  "keywords": [
+    "yii2",
+    "gii",
+    "code generator"
+  ],
+  "type": "yii2-extension",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Pavel Veselov",
+      "email": "pvsaintpe@icloud.com"
+    }
+  ],
+  "require": {
+    "yiisoft/yii2": ">=2.0.4",
+    "yiisoft/yii2-gii": "2.0.5",
+    "ivan-chkv/yii2-boost": "*",
+    "ivan-chkv/yii2-jui-autocomplete": "*"
+  },
+  "require-dev": {
+    "ivan-chkv/yii2-phpunit": "2.*"
+  },
+  "suggest": {
+    "ivan-chkv/yii2-boost": "Yii 2 Boost Extension"
+  },
+  "autoload": {
+    "psr-4": {
+      "yii\\gii\\plus\\": ""
+    }
+  },
+  "extra": {
+    "asset-installer-paths": {
+      "npm-asset-library": "vendor/npm",
+      "bower-asset-library": "vendor/bower"
+    }
+  }
+}

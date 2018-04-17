@@ -428,8 +428,8 @@ class Generator extends GiiModelGenerator
             foreach ($fixRelationNames as $fixRelationName) {
                 foreach ($tableRelations as $relationName => $relation) {
                     if (preg_match('~^(\D+)\d+$~', $relationName, $match) && ($match[1] == $fixRelationName)) {
-                        $relation = $this->allRelations[$tableName][$relationName];
-                        if ($relation['hasMany']) {
+                        $relation = $this->allRelations[$tableName][$relationName] ?? false;
+                        if ($relation && $relation['hasMany']) {
                             $linkKeys = array_keys($relation['link']);
                             if (count($linkKeys) == 1) {
                                 $linkKey = preg_replace('~_id$~', '', $linkKeys[0]);

@@ -242,6 +242,8 @@ if (array_key_exists($tableName, $relationUses) && in_array('yii\db\Expression',
 }
 
 // list items
+$listFunctions = [];
+
 foreach ($tableSchema->foreignKeys as $foreignKey) {
     $foreignTableName = $foreignKey[0];
     unset($foreignKey[0]);
@@ -267,42 +269,42 @@ foreach ($tableSchema->foreignKeys as $foreignKey) {
             ';
                     }
                 }
-                echo '
-    /**
-     * @param string|array|', $dbExpression, ' $condition
+                $listFunction = '/**
+     * @param string|array|' . $dbExpression . ' $condition
      * @param array $params
-     * @param string|array|', $dbExpression, ' $orderBy
+     * @param string|array|' . $dbExpression . ' $orderBy
      * @return array
      */
-    public function ', $attributeArg, 'ListItems($condition = null, $params = [], $orderBy = null)
+    public function ' . $attributeArg . 'ListItems($condition = null, $params = [], $orderBy = null)
     {
 ';
                 if ($listItemConditions) {
-                    echo '        if (is_null($condition)) {
-            $condition = [', $listItemConditions, '];
+                    $listFunction .= '        if (is_null($condition)) {
+            $condition = [' . $listItemConditions . '];
         }
 ';
                 }
-                echo '        return ', $foreignModelClass::classShortName(), '::findListItems($condition, $params, $orderBy);
-    }
+                $listFunction .= '        return ' . $foreignModelClass::classShortName() . '::findListItems($condition, $params, $orderBy);
+    }';
+                $listFunctions[] = $listFunction;
 
-    /**
+                $listFunction = '/**
      * @param array $condition
-     * @param string|array|', $dbExpression, ' $orderBy
+     * @param string|array|' . $dbExpression . ' $orderBy
      * @return array
      */
-    public function ', $attributeArg, 'FilterListItems(array $condition = [], $orderBy = null)
+    public function ' . $attributeArg . 'FilterListItems(array $condition = [], $orderBy = null)
     {
 ';
                 if ($listItemConditions) {
-                    echo '        if (!count($condition)) {
-            $condition = [', $listItemConditions, '];
+                    $listFunction .= '        if (!count($condition)) {
+            $condition = [' . $listItemConditions . '];
         }
 ';
                 }
-                echo '        return ', $foreignModelClass::classShortName(), '::findFilterListItems($condition, $orderBy);
-    }
-';
+                $listFunction .= '        return ' . $foreignModelClass::classShortName() . '::findFilterListItems($condition, $orderBy);
+    }';
+                $listFunctions[] = $listFunction;
             }
         }
     }
@@ -351,6 +353,11 @@ if ($primaryKey) {
             }
         }
     }
+}
+
+$listFunctions = array_unique($listFunctions);
+foreach ($listFunctions as $listFunction) {
+    echo "\n    ", $listFunction, "\n";
 }
 
 // unique keys by primary key

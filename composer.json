@@ -16,7 +16,7 @@
   ],
   "require": {
     "yiisoft/yii2": ">=2.0.4",
-    "yiisoft/yii2-gii": "2.0.5",
+    "yiisoft/yii2-gii": ">=2.0.5",
     "ivan-chkv/yii2-boost": "*",
     "ivan-chkv/yii2-jui-autocomplete": "*"
   },

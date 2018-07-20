@@ -2,12 +2,12 @@
 
 namespace yii\gii\plus\db;
 
-use yii\base\Object;
+use yii\base\BaseObject;
 
 /**
  * @property int $count
  */
-class TitleKeySchema extends Object
+class TitleKeySchema extends BaseObject
 {
 
     /**

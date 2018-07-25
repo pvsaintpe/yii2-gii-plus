@@ -428,6 +428,9 @@ class Generator extends GiiModelGenerator
             foreach ($fixRelationNames as $fixRelationName) {
                 foreach ($tableRelations as $relationName => $relation) {
                     if (preg_match('~^(\D+)\d+$~', $relationName, $match) && ($match[1] == $fixRelationName)) {
+                        if (!isset($this->allRelations[$tableName][$relationName])) {
+                            continue;
+                        }
                         $relation = $this->allRelations[$tableName][$relationName] ?? false;
                         if ($relation && $relation['hasMany']) {
                             $linkKeys = array_keys($relation['link']);
@@ -551,7 +554,7 @@ class Generator extends GiiModelGenerator
                         'nsClassName', 'link', 'direct', 'viaTable', 'linkCode'
                     );
                     if ($hasMany) {
-                        $this->pluralRelations[$tableName][$relationName] = compact(
+                         $this->pluralRelations[$tableName][$relationName] = compact(
                             'code', 'className', 'hasMany',
                             'nsClassName', 'link', 'direct', 'viaTable', 'linkCode'
                         );

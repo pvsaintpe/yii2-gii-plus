@@ -16,6 +16,7 @@ class Module extends GiiModule
     public function bootstrap($app)
     {
         parent::bootstrap($app);
+        
         foreach (Helper::getDbConnections() as $db) {
             if (in_array($db->getDriverName(), ['mysql', 'mysqli'])) {
                 $db->schemaMap = array_merge($db->schemaMap, [

@@ -17,7 +17,7 @@
   "require": {
     "php": ">=7.0.0",
     "yiisoft/yii2": "2.0.15.1",
-    "pvsaintpe/yii2-gii": "2.0.5",
+    "pvsaintpe/yii2-gii": "2.0.6",
     "ivan-chkv/yii2-boost": "*",
     "ivan-chkv/yii2-jui-autocomplete": "*"
   },

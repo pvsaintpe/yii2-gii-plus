@@ -672,7 +672,7 @@ class Generator extends GiiModelGenerator
                     $output = str_replace('use Yii;', 'use Yii;' . "\n" . 'use ' . implode(';' . "\n" . 'use ', $uses) . ';', $output);
                 }
                 // fix rules
-                $output = preg_replace('~\'targetClass\' \=\> (\w+)Base\:\:className\(\)~', '\'targetClass\' => $1::className()', $output);
+                $output = preg_replace('~\'targetClass\' \=\> (\w+)Base\:\:className\(\)~', '\'targetClass\' => $1::class', $output);
                 // fix relations
                 $nsClassName = $this->ns . '\\' . $params['className'];
                 if (class_exists($nsClassName) && is_subclass_of($nsClassName, 'yii\boost\db\ActiveRecord')) {

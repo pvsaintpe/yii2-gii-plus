@@ -566,6 +566,10 @@ class Generator extends GiiModelGenerator
                     }
                     // via relations
                     if (!$hasMany && ($subTableName != $tableName)) {
+                        if (!isset($generatedRelations[$subTableName])) {
+                            continue;
+                        }
+
                         foreach ($generatedRelations[$subTableName] as $subRelationName => $subRelation) {
                             list ($subCode, $subClassName, $subHasMany) = $subRelation;
                             $tableName2 = array_search($subClassName, $this->classNames);

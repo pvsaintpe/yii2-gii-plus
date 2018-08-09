@@ -135,7 +135,11 @@ foreach ($tableSchema->fks as $foreignKey) {
     if ($foreignKey->getCount() == 1) {
         $attribute = $foreignKey->key[0];
         $attributeArg = Inflector::variablize($attribute);
-        $attributeType = $tableSchema->getColumn($attribute)->phpType;
+        if (!$column = $tableSchema->getColumn($attribute)) {
+            continue;
+        }
+
+        $attributeType = $column->phpType;
         $methodName = $attributeArg;
         if (!in_array($methodName, $methods)) {
             $methods[] = $methodName;
@@ -244,7 +248,11 @@ foreach ($tableSchema->uks as $uniqueKey) {
 // primary/foreign/unique keys
 foreach ($keyAttributes as $attribute) {
     $attributeArg = Inflector::variablize($attribute);
-    $attributeType = $tableSchema->getColumn($attribute)->phpType;
+    if (!$column = $tableSchema->getColumn($attribute)) {
+        continue;
+    }
+
+    $attributeType = $column->phpType;
     $methodName = $attributeArg;
     if (!in_array($methodName, $methods)) {
         $methods[] = $methodName;

@@ -1,6 +1,6 @@
 <?php
 
-namespace yii\gii\plus\helpers;
+namespace pvsaintpe\gii\plus\helpers;
 
 use yii\db\Connection;
 use yii\base\NotSupportedException;

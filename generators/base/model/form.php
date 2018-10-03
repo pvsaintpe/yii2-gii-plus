@@ -1,7 +1,7 @@
 <?php
 
 use yii\jui\autosearch\AutoComplete;
-use yii\gii\plus\generators\base\model\Generator;
+use pvsaintpe\gii\plus\generators\base\model\Generator;
 use yii\helpers\Html;
 use yii\web\JsExpression;
 

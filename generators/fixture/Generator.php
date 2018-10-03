@@ -1,10 +1,10 @@
 <?php
 
-namespace yii\gii\plus\generators\fixture;
+namespace pvsaintpe\gii\plus\generators\fixture;
 
 use yii\gii\CodeFile;
 use yii\gii\Generator as GiiGenerator;
-use yii\gii\plus\helpers\Helper;
+use pvsaintpe\gii\plus\helpers\Helper;
 use yii\helpers\Inflector;
 use yii\web\JsExpression;
 use yii\helpers\Json;
@@ -138,7 +138,7 @@ class Generator extends GiiGenerator
                 $baseFixtureName = preg_replace('~^(?:\w+\\\\)*\w+\\\\(\w+)$~', '$1', $this->fixtureBaseClass);
                 $baseFixtureClass = $this->fixtureBaseClass;
                 $dataFile = $this->dataPath . '/' . Inflector::underscore($modelName) . '.php';
-                /* @var $tableSchema \yii\gii\plus\db\TableSchema */
+                /* @var $tableSchema \pvsaintpe\gii\plus\db\TableSchema */
                 $tableSchema = $modelClass::getTableSchema();
                 $params = [
                     'ns' => $ns,

@@ -1,14 +1,14 @@
 <?php
 
-use yii\gii\plus\helpers\Helper;
+use pvsaintpe\gii\plus\helpers\Helper;
 use yii\helpers\Inflector;
 
 /* @var $this yii\web\View */
-/* @var $generator yii\gii\plus\generators\base\model\Generator */
+/* @var $generator pvsaintpe\gii\plus\generators\base\model\Generator */
 /* @var $tableName string */
 /* @var $className string */
 /* @var $queryClassName string */
-/* @var $tableSchema yii\gii\plus\db\TableSchema */
+/* @var $tableSchema pvsaintpe\gii\plus\db\TableSchema */
 /* @var $labels string[] */
 /* @var $rules string[] */
 /* @var $relations array */

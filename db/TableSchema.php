@@ -1,6 +1,6 @@
 <?php
 
-namespace yii\gii\plus\db;
+namespace pvsaintpe\gii\plus\db;
 
 use yii\db\TableSchema as BaseTableSchema;
 

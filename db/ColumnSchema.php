@@ -1,6 +1,6 @@
 <?php
 
-namespace yii\gii\plus\db;
+namespace pvsaintpe\gii\plus\db;
 
 use yii\db\ColumnSchema as BaseColumnSchema;
 use yii\db\Schema;

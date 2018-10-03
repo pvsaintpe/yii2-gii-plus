@@ -1,11 +1,11 @@
 <?php
 
-namespace yii\gii\plus\generators\base\model;
+namespace pvsaintpe\gii\plus\generators\base\model;
 
 use yii\base\ErrorException;
 use yii\db\Expression;
 use yii\gii\generators\model\Generator as GiiModelGenerator;
-use yii\gii\plus\helpers\Helper;
+use pvsaintpe\gii\plus\helpers\Helper;
 use yii\helpers\Html;
 use yii\helpers\Inflector;
 use yii\web\JsExpression;
@@ -270,7 +270,7 @@ class Generator extends GiiModelGenerator
 
     /**
      * @inheritdoc
-     * @param \yii\gii\plus\db\TableSchema $table
+     * @param \pvsaintpe\gii\plus\db\TableSchema $table
      */
     public function generateRules($table)
     {
@@ -486,7 +486,7 @@ class Generator extends GiiModelGenerator
         $this->pluralRelations = [];
         $generatedRelations = parent::generateRelations();
         foreach ($generatedRelations as $tableName => $tableRelations) {
-            /* @var $tableSchema \yii\gii\plus\db\TableSchema */
+            /* @var $tableSchema \pvsaintpe\gii\plus\db\TableSchema */
             $tableSchema = $db->getTableSchema($tableName);
             $relations[$tableName] = [];
             $this->relationUses[$tableName] = [];
@@ -599,7 +599,7 @@ class Generator extends GiiModelGenerator
 
     /**
      * @inheritdoc
-     * @param \yii\gii\plus\db\TableSchema $table
+     * @param \pvsaintpe\gii\plus\db\TableSchema $table
      */
     protected function generateRelationName($relations, $table, $key, $multiple)
     {

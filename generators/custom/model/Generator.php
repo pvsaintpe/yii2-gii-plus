@@ -1,10 +1,10 @@
 <?php
 
-namespace yii\gii\plus\generators\custom\model;
+namespace pvsaintpe\gii\plus\generators\custom\model;
 
 use yii\gii\CodeFile;
 use yii\gii\Generator as GiiGenerator;
-use yii\gii\plus\helpers\Helper;
+use pvsaintpe\gii\plus\helpers\Helper;
 use yii\web\JsExpression;
 use yii\helpers\Json;
 use Yii;
@@ -96,7 +96,7 @@ class Generator extends GiiGenerator
                 $queryClass = $queryNs . '\\' . $queryName;
                 $baseQueryName = $modelName . 'QueryBase';
                 $baseQueryClass = $queryNs . '\base\\' . $baseQueryName;
-                /* @var $tableSchema \yii\gii\plus\db\TableSchema */
+                /* @var $tableSchema \pvsaintpe\gii\plus\db\TableSchema */
                 $tableSchema = $baseModelClass::getTableSchema();
                 $params = [
                     'ns' => $ns,

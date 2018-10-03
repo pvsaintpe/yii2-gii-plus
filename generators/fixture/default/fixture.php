@@ -1,10 +1,10 @@
 <?php
 
-use yii\gii\plus\helpers\Helper;
+use pvsaintpe\gii\plus\helpers\Helper;
 use yii\helpers\Inflector;
 
 /* @var $this yii\web\View */
-/* @var $generator yii\gii\plus\generators\fixture\Generator */
+/* @var $generator pvsaintpe\gii\plus\generators\fixture\Generator */
 /* @var $ns string */
 /* @var $modelName string */
 /* @var $modelClass string|yii\boost\db\ActiveRecord */
@@ -14,7 +14,7 @@ use yii\helpers\Inflector;
 /* @var $baseFixtureName string */
 /* @var $baseFixtureClass string|yii\boost\test\ActiveFixture */
 /* @var $dataFile string */
-/* @var $tableSchema yii\gii\plus\db\TableSchema */
+/* @var $tableSchema pvsaintpe\gii\plus\db\TableSchema */
 
 $uses = [
     $baseFixtureClass
@@ -72,7 +72,7 @@ if (count($backDepends)) {
 echo '
     /*[
 ';
-/* @var $columns yii\gii\plus\db\ColumnSchema[] */
+/* @var $columns pvsaintpe\gii\plus\db\ColumnSchema[] */
 $columns = array_values($tableSchema->columns);
 foreach ($columns as $i => $column) {
     $comma = ($i < count($columns) - 1) ? ',' : '';

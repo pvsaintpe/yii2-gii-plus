@@ -1,12 +1,12 @@
 <?php
 
-namespace yii\gii\plus\db\mysql;
+namespace pvsaintpe\gii\plus\db\mysql;
 
-use yii\gii\plus\db\ColumnSchema;
+use pvsaintpe\gii\plus\db\ColumnSchema;
 use yii\db\mysql\Schema as MysqlSchema;
 use yii\base\NotSupportedException;
 use PDO;
-use yii\gii\plus\db\TableSchema;
+use pvsaintpe\gii\plus\db\TableSchema;
 
 class Schema extends MysqlSchema
 {

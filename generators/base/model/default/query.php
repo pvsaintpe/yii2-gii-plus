@@ -1,3 +1,3 @@
 <?php
 
-require(Yii::getAlias('@yii/gii/generators/model/default/query.php'));
+require(Yii::getAlias('@pvsaintpe/gii/generators/model/default/query.php'));

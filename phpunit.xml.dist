@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<phpunit bootstrap="./test-app/tests/bootstrap.php" colors="true">
-    <testsuites>
-        <testsuite name="Yii 2 Gii Plus Extension">
-            <directory>./test-app/tests</directory>
-            <exclude>./test-app/tests/data</exclude>
-        </testsuite>
-    </testsuites>
-</phpunit>

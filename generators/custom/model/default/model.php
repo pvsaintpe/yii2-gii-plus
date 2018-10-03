@@ -1,10 +1,10 @@
 <?php
 
-use yii\gii\plus\helpers\Helper;
+use pvsaintpe\gii\plus\helpers\Helper;
 use yii\helpers\Inflector;
 
 /* @var $this yii\web\View */
-/* @var $generator yii\gii\plus\generators\custom\model\Generator */
+/* @var $generator pvsaintpe\gii\plus\generators\custom\model\Generator */
 /* @var $ns string */
 /* @var $modelName string */
 /* @var $modelClass string|yii\boost\db\ActiveRecord */
@@ -15,7 +15,7 @@ use yii\helpers\Inflector;
 /* @var $queryClass string|yii\boost\db\ActiveQuery */
 /* @var $baseQueryName string */
 /* @var $baseQueryClass string|yii\boost\db\ActiveQuery */
-/* @var $tableSchema yii\gii\plus\db\TableSchema */
+/* @var $tableSchema pvsaintpe\gii\plus\db\TableSchema */
 
 $uses = [
     $baseModelClass

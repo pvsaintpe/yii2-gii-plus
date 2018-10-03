@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "43a6dfe38f1fb97ef00ce3b36ba597f9",
+    "content-hash": "e32948af7fd91dba7e552f3299c28f00",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -514,16 +514,16 @@
         },
         {
             "name": "pvsaintpe/yii2-gii",
-            "version": "2.0.8",
+            "version": "2.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pvsaintpe/yii2-gii.git",
-                "reference": "28fdd89d4a9ba0561098af00e5d14cc05cd3c612"
+                "reference": "1febd56f297c934997b684e08d00d9d984a38cfd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pvsaintpe/yii2-gii/zipball/28fdd89d4a9ba0561098af00e5d14cc05cd3c612",
-                "reference": "28fdd89d4a9ba0561098af00e5d14cc05cd3c612",
+                "url": "https://api.github.com/repos/pvsaintpe/yii2-gii/zipball/1febd56f297c934997b684e08d00d9d984a38cfd",
+                "reference": "1febd56f297c934997b684e08d00d9d984a38cfd",
                 "shasum": ""
             },
             "require": {
@@ -560,7 +560,7 @@
                 "gii",
                 "yii2"
             ],
-            "time": "2018-10-03T09:53:34+00:00"
+            "time": "2018-10-03T10:02:44+00:00"
         },
         {
             "name": "yiisoft/yii2",
@@ -786,5 +786,7 @@
     "platform": {
         "php": ">=7.0.0"
     },
-    "platform-dev": []
+    "platform-dev": {
+        "ext-pdo": "*"
+    }
 }

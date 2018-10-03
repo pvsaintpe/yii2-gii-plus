@@ -20,6 +20,9 @@
     "pvsaintpe/yii2-gii": "*",
     "pvsaintpe/yii2-boost": "*"
   },
+  "require-dev": {
+    "ext-PDO": "*"
+  },
   "autoload": {
     "psr-4": {
       "pvsaintpe\\gii\\plus\\": ""

@@ -26,7 +26,7 @@ class Generator extends GiiGenerator
     /**
      * @var string
      */
-    public $fixtureBaseClass = 'yii\boost\test\ActiveFixture';
+    public $fixtureBaseClass = 'pvsaintpe\boost\test\ActiveFixture';
 
     /**
      * @var bool
@@ -70,7 +70,7 @@ class Generator extends GiiGenerator
                 return preg_replace('~\\\\models\\\\(?:\w+|\*)$~', '\fixtures', $model->modelClass);
             }],
             [['fixtureNs'], 'match', 'pattern' => '~\\\\fixtures$~'],
-            [['fixtureBaseClass'], 'validateClass', 'params' => ['extends' => 'yii\boost\test\ActiveFixture']],
+            [['fixtureBaseClass'], 'validateClass', 'params' => ['extends' => 'pvsaintpe\boost\test\ActiveFixture']],
             [['generateDataFile'], 'boolean'],
             [['dataPath'], 'default', 'value' => function (Generator $model, $attribute) {
                 return '@' . str_replace('\\', '/', preg_replace('~\\\\fixtures$~', '\tests\data', $model->fixtureNs));
@@ -116,7 +116,7 @@ class Generator extends GiiGenerator
      */
     public function getFixtureBaseClassAutoComplete()
     {
-        return ['yii\boost\test\ActiveFixture'];
+        return ['pvsaintpe\boost\test\ActiveFixture'];
     }
 
     /**
@@ -130,7 +130,7 @@ class Generator extends GiiGenerator
             foreach (glob($pattern) as $filename) {
                 $ns = $match[1];
                 $modelName = basename($filename, '.php');
-                /* @var $modelClass string|\yii\boost\db\ActiveRecord */
+                /* @var $modelClass string|\pvsaintpe\boost\db\ActiveRecord */
                 $modelClass = $ns . '\\' . $modelName;
                 $fixtureNs = $this->fixtureNs;
                 $fixtureName = $modelName;

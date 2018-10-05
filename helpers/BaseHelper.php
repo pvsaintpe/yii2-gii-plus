@@ -133,7 +133,7 @@ class BaseHelper
                 foreach (glob(Yii::getAlias('@' . str_replace('\\', '/', $modelNs)) . '/*.php') as $modelPath) {
                     $modelClass = $modelNs . '\\' . basename($modelPath, '.php');
                     if (class_exists($modelClass)
-                        && is_subclass_of($modelClass, 'yii\boost\db\ActiveRecord')
+                        && is_subclass_of($modelClass, 'pvsaintpe\boost\db\ActiveRecord')
                         && !in_array('search', get_class_methods($modelClass))
                     ) {
                         static::$modelClasses[] = $modelClass;
@@ -156,7 +156,7 @@ class BaseHelper
     {
         if (is_null(static::$modelClassTableNameMap)) {
             static::$modelClassTableNameMap = [];
-            /* @var $modelClass string|\yii\boost\db\ActiveRecord */
+            /* @var $modelClass string|\pvsaintpe\boost\db\ActiveRecord */
             foreach (static::getModelClasses() as $modelClass) {
                 static::$modelClassTableNameMap[$modelClass] = $modelClass::tableName();
             }

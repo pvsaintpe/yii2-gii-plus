@@ -27,12 +27,12 @@ class Generator extends GiiModelGenerator
 
     public $ns = 'app\models\base';
     public $tableName = '*';
-    public $baseClass = 'yii\boost\db\ActiveRecord';
+    public $baseClass = 'pvsaintpe\boost\db\ActiveRecord';
     public $generateLabelsFromComments = true;
     public $useSchemaName = false;
     public $generateQuery = true;
     public $queryNs;
-    public $queryBaseClass = 'yii\boost\db\ActiveQuery';
+    public $queryBaseClass = 'pvsaintpe\boost\db\ActiveQuery';
 
     /**
      * @inheritdoc
@@ -76,13 +76,13 @@ class Generator extends GiiModelGenerator
             [['includeFilter', 'excludeFilter'], 'validatePattern'],
             [['ns'], 'match', 'pattern' => '~\\\\base$~'],
             [['modelClass'], 'match', 'pattern' => '~Base$~'],
-            [['baseClass'], 'validateClass', 'params' => ['extends' => 'yii\boost\db\ActiveRecord']],
+            [['baseClass'], 'validateClass', 'params' => ['extends' => 'pvsaintpe\boost\db\ActiveRecord']],
             [['queryNs'], 'default', 'value' => function (Generator $model, $attribute) {
                 return preg_replace('~\\\\base$~', '\query\base', $model->ns);
             }],
             [['queryNs'], 'match', 'pattern' => '~\\\\query\\\\base$~'],
             [['queryClass'], 'match', 'pattern' => '~QueryBase$~'],
-            [['queryBaseClass'], 'validateClass', 'params' => ['extends' => 'yii\boost\db\ActiveQuery']]
+            [['queryBaseClass'], 'validateClass', 'params' => ['extends' => 'pvsaintpe\boost\db\ActiveQuery']]
         ]);
     }
 
@@ -194,7 +194,7 @@ class Generator extends GiiModelGenerator
      */
     public function getBaseClassAutoComplete()
     {
-        return ['yii\boost\db\ActiveRecord'];
+        return ['pvsaintpe\boost\db\ActiveRecord'];
     }
 
     /**
@@ -235,7 +235,7 @@ class Generator extends GiiModelGenerator
      */
     public function getQueryBaseClassAutoComplete()
     {
-        return ['yii\boost\db\ActiveQuery'];
+        return ['pvsaintpe\boost\db\ActiveQuery'];
     }
 
     /**
@@ -495,7 +495,7 @@ class Generator extends GiiModelGenerator
             $this->pluralRelations[$tableName] = [];
             foreach ($tableRelations as $relationName => $relation) {
                 list ($code, $className, $hasMany) = $relation;
-                /* @var $nsClassName string|\yii\boost\db\ActiveRecord */
+                /* @var $nsClassName string|\pvsaintpe\boost\db\ActiveRecord */
                 $nsClassName = Helper::getModelClassByTableName(array_search($className, $this->classNames));
                 if ($nsClassName && class_exists($nsClassName)) {
                     $relations[$tableName][$relationName] = [$code, $className, $hasMany];
@@ -574,7 +574,7 @@ class Generator extends GiiModelGenerator
                             list ($subCode, $subClassName, $subHasMany) = $subRelation;
                             $tableName2 = array_search($subClassName, $this->classNames);
                             if ($tableName2 != $tableName) {
-                                /* @var $subNsClassName string|\yii\boost\db\ActiveRecord */
+                                /* @var $subNsClassName string|\pvsaintpe\boost\db\ActiveRecord */
                                 $subNsClassName = Helper::getModelClassByTableName($tableName2);
                                 if ($subNsClassName && class_exists($subNsClassName)) {
                                     if (!$subHasMany && !array_key_exists($subRelationName, $generatedRelations[$tableName])) {
@@ -679,7 +679,7 @@ class Generator extends GiiModelGenerator
                 $output = preg_replace('~\'targetClass\' \=\> (\w+)Base\:\:class~', '\'targetClass\' => $1::class', $output);
                 // fix relations
                 $nsClassName = $this->ns . '\\' . $params['className'];
-                if (class_exists($nsClassName) && is_subclass_of($nsClassName, 'yii\boost\db\ActiveRecord')) {
+                if (class_exists($nsClassName) && is_subclass_of($nsClassName, 'pvsaintpe\boost\db\ActiveRecord')) {
                     $model = new $nsClassName;
                     $output = preg_replace_callback('~@return \\\\(yii\\\\db\\\\ActiveQuery)\s+\*/\s+public function ([^\(]+)\(\)~', function ($match) use ($model) {
                         if (method_exists($model, $match[2])) {

@@ -27,7 +27,7 @@ if ($column && $column->getIsBoolean()) {
     public function init()
     {
         parent::init();
-        $this->where(new \yii\boost\db\Expression(\'{a}.', $attribute, ' = 0 OR {a}.', $attribute, ' IS NULL\', [], [\'query\' => $this]));
+        $this->where(new \pvsaintpe\boost\db\Expression(\'{a}.', $attribute, ' = 0 OR {a}.', $attribute, ' IS NULL\', [], [\'query\' => $this]));
     }
 ';
     }

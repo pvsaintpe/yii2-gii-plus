@@ -247,7 +247,7 @@ $listFunctions = [];
 foreach ($tableSchema->foreignKeys as $foreignKey) {
     $foreignTableName = $foreignKey[0];
     unset($foreignKey[0]);
-    /* @var $foreignModelClass string|\yii\boost\db\ActiveRecord */
+    /* @var $foreignModelClass string|\pvsaintpe\boost\db\ActiveRecord */
     $foreignModelClass = Helper::getModelClassByTableName($foreignTableName);
     if ($foreignModelClass && class_exists($foreignModelClass)) {
         $primaryKey = $foreignModelClass::primaryKey();

@@ -7,12 +7,12 @@ use yii\helpers\Inflector;
 /* @var $generator pvsaintpe\gii\plus\generators\fixture\Generator */
 /* @var $ns string */
 /* @var $modelName string */
-/* @var $modelClass string|yii\boost\db\ActiveRecord */
+/* @var $modelClass string|pvsaintpe\boost\db\ActiveRecord */
 /* @var $fixtureNs string */
 /* @var $fixtureName string */
-/* @var $fixtureClass string|yii\boost\test\ActiveFixture */
+/* @var $fixtureClass string|pvsaintpe\boost\test\ActiveFixture */
 /* @var $baseFixtureName string */
-/* @var $baseFixtureClass string|yii\boost\test\ActiveFixture */
+/* @var $baseFixtureClass string|pvsaintpe\boost\test\ActiveFixture */
 /* @var $dataFile string */
 /* @var $tableSchema pvsaintpe\gii\plus\db\TableSchema */
 
@@ -37,7 +37,7 @@ class ', $fixtureName, ' extends ', $baseFixtureName, '
     public $modelClass = \'', $modelClass, '\';
 ';
 
-/* @var $model yii\boost\db\ActiveRecord */
+/* @var $model pvsaintpe\boost\db\ActiveRecord */
 $model = new $modelClass;
 
 // depends/backDepends
@@ -45,9 +45,9 @@ $depends = [];
 $backDepends = [];
 foreach ($modelClass::allRelations() as $relationName => $relation) {
     if (!$relation['viaTable']) {
-        /* @var $relationClass string|yii\boost\db\ActiveRecord */
+        /* @var $relationClass string|pvsaintpe\boost\db\ActiveRecord */
         $relationClass = $model->getRelationClass($relationName);
-        /* @var $relationFixtureClass string|yii\boost\test\ActiveFixture */
+        /* @var $relationFixtureClass string|pvsaintpe\boost\test\ActiveFixture */
         $relationFixtureClass = $fixtureNs . '\\' . $relationClass::classShortName();
         if (($relationFixtureClass != $fixtureClass) && class_exists($relationFixtureClass)) {
             if ($relation['direct']) {

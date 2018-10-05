@@ -89,7 +89,7 @@ class Generator extends GiiGenerator
                 $modelName = basename($filename, 'Base.php');
                 $modelClass = $ns . '\\' . $modelName;
                 $baseModelName = basename($filename, '.php');
-                /* @var $baseModelClass string|\yii\boost\db\ActiveRecord */
+                /* @var $baseModelClass string|\pvsaintpe\boost\db\ActiveRecord */
                 $baseModelClass = $ns . '\base\\' . $baseModelName;
                 $queryNs = $ns . '\query';
                 $queryName = $modelName . 'Query';

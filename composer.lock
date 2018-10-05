@@ -465,16 +465,16 @@
         },
         {
             "name": "pvsaintpe/yii2-boost",
-            "version": "1.0.3",
+            "version": "2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pvsaintpe/yii2-boost.git",
-                "reference": "2c378b8697446243b01fe1da7397c71168156e2c"
+                "reference": "b3d82d579e57dbcfe6b16c1a9ec49f5f08546d45"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pvsaintpe/yii2-boost/zipball/2c378b8697446243b01fe1da7397c71168156e2c",
-                "reference": "2c378b8697446243b01fe1da7397c71168156e2c",
+                "url": "https://api.github.com/repos/pvsaintpe/yii2-boost/zipball/b3d82d579e57dbcfe6b16c1a9ec49f5f08546d45",
+                "reference": "b3d82d579e57dbcfe6b16c1a9ec49f5f08546d45",
                 "shasum": ""
             },
             "require": {
@@ -510,20 +510,20 @@
                 "gii",
                 "yii2"
             ],
-            "time": "2018-10-02T22:20:29+00:00"
+            "time": "2018-10-05T10:30:14+00:00"
         },
         {
             "name": "pvsaintpe/yii2-gii",
-            "version": "2.0.9",
+            "version": "2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pvsaintpe/yii2-gii.git",
-                "reference": "1febd56f297c934997b684e08d00d9d984a38cfd"
+                "reference": "a09c6c988c7db976c4ad13e4535a780a5a1a15a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pvsaintpe/yii2-gii/zipball/1febd56f297c934997b684e08d00d9d984a38cfd",
-                "reference": "1febd56f297c934997b684e08d00d9d984a38cfd",
+                "url": "https://api.github.com/repos/pvsaintpe/yii2-gii/zipball/a09c6c988c7db976c4ad13e4535a780a5a1a15a8",
+                "reference": "a09c6c988c7db976c4ad13e4535a780a5a1a15a8",
                 "shasum": ""
             },
             "require": {
@@ -560,7 +560,7 @@
                 "gii",
                 "yii2"
             ],
-            "time": "2018-10-03T10:02:44+00:00"
+            "time": "2018-10-05T17:21:58+00:00"
         },
         {
             "name": "yiisoft/yii2",

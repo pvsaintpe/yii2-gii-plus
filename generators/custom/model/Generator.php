@@ -2,8 +2,8 @@
 
 namespace pvsaintpe\gii\plus\generators\custom\model;
 
-use yii\gii\CodeFile;
-use yii\gii\Generator as GiiGenerator;
+use pvsaintpe\gii\CodeFile;
+use pvsaintpe\gii\Generator as GiiGenerator;
 use pvsaintpe\gii\plus\helpers\Helper;
 use yii\web\JsExpression;
 use yii\helpers\Json;

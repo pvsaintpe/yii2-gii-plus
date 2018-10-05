@@ -4,7 +4,7 @@ namespace pvsaintpe\gii\plus\generators\base\model;
 
 use yii\base\ErrorException;
 use yii\db\Expression;
-use yii\gii\generators\model\Generator as GiiModelGenerator;
+use pvsaintpe\gii\generators\model\Generator as GiiModelGenerator;
 use pvsaintpe\gii\plus\helpers\Helper;
 use yii\helpers\Html;
 use yii\helpers\Inflector;

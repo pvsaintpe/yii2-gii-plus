@@ -2,7 +2,7 @@
 
 namespace pvsaintpe\gii\plus;
 
-use yii\gii\Module as GiiModule;
+use pvsaintpe\gii\Module as GiiModule;
 use pvsaintpe\gii\plus\helpers\Helper;
 use yii\web\Application as WebApplication;
 use Yii;

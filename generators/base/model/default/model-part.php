@@ -202,7 +202,7 @@ if ($titleKey) {
 
 // methods "new"
 foreach ($allRelations as $relationName => $relation) {
-    if (!$relation['direct'] && !$relation['viaTable']) {
+    if (!$relation['direct'] && isset($relation['viaTable']) && !$relation['viaTable']) {
         if ($relation['hasMany']) {
             if (preg_match('~^(.*\D)(\d+)$~', $relationName, $match)) {
                 $methodName = 'new' . Inflector::singularize($match[1]) . $match[2];

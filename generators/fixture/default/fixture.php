@@ -10,9 +10,9 @@ use yii\helpers\Inflector;
 /* @var $modelClass string|pvsaintpe\boost\db\ActiveRecord */
 /* @var $fixtureNs string */
 /* @var $fixtureName string */
-/* @var $fixtureClass string|pvsaintpe\boost\test\ActiveFixture */
+/* @var $fixtureClass string */
 /* @var $baseFixtureName string */
-/* @var $baseFixtureClass string|pvsaintpe\boost\test\ActiveFixture */
+/* @var $baseFixtureClass string */
 /* @var $dataFile string */
 /* @var $tableSchema pvsaintpe\gii\plus\db\TableSchema */
 
@@ -44,10 +44,10 @@ $model = new $modelClass;
 $depends = [];
 $backDepends = [];
 foreach ($modelClass::allRelations() as $relationName => $relation) {
-    if (!$relation['viaTable']) {
+    if (isset($relation['viaTable']) && !$relation['viaTable']) {
         /* @var $relationClass string|pvsaintpe\boost\db\ActiveRecord */
         $relationClass = $model->getRelationClass($relationName);
-        /* @var $relationFixtureClass string|pvsaintpe\boost\test\ActiveFixture */
+        /* @var $relationFixtureClass string */
         $relationFixtureClass = $fixtureNs . '\\' . $relationClass::classShortName();
         if (($relationFixtureClass != $fixtureClass) && class_exists($relationFixtureClass)) {
             if ($relation['direct']) {

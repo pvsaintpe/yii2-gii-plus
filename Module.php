@@ -34,10 +34,13 @@ class Module extends GiiModule
      */
     protected function coreGenerators()
     {
-        return array_merge(parent::coreGenerators(), [
-            'base_model' => ['class' => 'pvsaintpe\gii\plus\generators\base\model\Generator'],
-            'custom_model' => ['class' => 'pvsaintpe\gii\plus\generators\custom\model\Generator'],
-            'fixture' => ['class' => 'pvsaintpe\gii\plus\generators\fixture\Generator']
-        ]);
+        return array_merge(
+            parent::coreGenerators(),
+            [
+                'base_model' => ['class' => 'pvsaintpe\gii\plus\generators\base\model\Generator'],
+                'custom_model' => ['class' => 'pvsaintpe\gii\plus\generators\custom\model\Generator'],
+                'fixture' => ['class' => 'pvsaintpe\gii\plus\generators\fixture\Generator']
+            ]
+        );
     }
 }

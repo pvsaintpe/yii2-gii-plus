@@ -57,7 +57,6 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . 
         }
         return '<?= $generator->generateTableName($tableName) ?>';
     }
-
 <?php if ($generator->db !== 'db'): ?>
 
     /**
@@ -94,7 +93,7 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . 
     }
 <?php foreach ($relations as $name => $relation): ?>
 <?php
-    //<?= str_replace('\base', '', '\\' . $generator->queryNs) .  '\\' . $relation[1] . 'Query'?>|
+
     ?>
     /**
      * @return \yii\db\ActiveQuery
@@ -105,7 +104,7 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . 
     }
 <?php endforeach; ?>
 <?php if ($queryClassName): ?>
-    <?php
+<?php
     $queryClassFullName = ($generator->ns === $generator->queryNs) ? $queryClassName : '\\' . $generator->queryNs . '\\' . $queryClassName;
     echo "\n";
     ?>
@@ -205,9 +204,9 @@ if (count($pluralRelations)) {
      * @return ' . $relationName . '
      * @throws
      */
-    public function oneOff' . $relationName . '($' . join(', $', $pluralKeys) . ')
+    public function oneOf' . $relationName . '($' . join(', $', $pluralKeys) . ')
     {
-        return $this->oneOff(\'' . lcfirst($relationName) . '\', compact(\'' . join("', '", $pluralKeys) . '\'));
+        return $this->oneOf(\'' . lcfirst($relationName) . '\', compact(\'' . join("', '", $pluralKeys) . '\'));
     }
 ';
         }

@@ -114,7 +114,7 @@ class Generator extends GiiModelGenerator
      */
     public function requiredTemplates()
     {
-        return ['model.php', 'model-part.php', 'query.php', 'query-part.php'];
+        return ['model.php', 'query.php'];
     }
 
     /**
@@ -667,6 +667,7 @@ class Generator extends GiiModelGenerator
     {
         $tableName = $params['tableName'];
 
+        $params['uses'] = [];
         if (array_key_exists($tableName, $this->relationUses) && $this->relationUses[$tableName]) {
             $uses = array_unique($this->relationUses[$tableName]);
             Helper::sortUses($uses);

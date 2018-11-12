@@ -28,22 +28,16 @@ echo "<?php\n";
 namespace <?= $generator->queryNs ?>;
 
 /**
- * This is the ActiveQuery class for [[<?= $modelFullClassName ?>]].
+ * This is the ActiveQuery class for [[\<?= str_replace('\base', '', $generator->ns) . '\\' . str_replace('Base', '',$modelClassName)?>]].
  *
- * @see <?= $modelFullClassName . "\n" ?>
+ * @see \<?= str_replace('\base', '', $generator->ns) . '\\' . str_replace('Base', '',$modelClassName) . "\n" ?>
  */
 class <?= $className ?> extends <?= '\\' . ltrim($generator->queryBaseClass, '\\') . "\n" ?>
 {
-    /*
-    public function active()
-    {
-        return $this->andWhere('[[status]]=1');
-    }
-    */
 
     /**
      * @inheritdoc
-     * @return <?= $modelFullClassName ?>[]|array
+     * @return \<?= str_replace('\base', '', $generator->ns) . '\\' . str_replace('Base', '',$modelClassName) ?>[]|array
      */
     public function all($db = null)
     {
@@ -52,7 +46,7 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->queryBaseClass, '\\
 
     /**
      * @inheritdoc
-     * @return <?= $modelFullClassName ?>|array|null
+     * @return \<?= str_replace('\base', '', $generator->ns) . '\\' . str_replace('Base', '',$modelClassName) ?>|array|null
      */
     public function one($db = null)
     {
@@ -388,4 +382,3 @@ foreach ($tableSchema->columns as $column) {
 }
 ?>
 }
-

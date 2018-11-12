@@ -14,6 +14,7 @@ use pvsaintpe\gii\plus\helpers\Helper;
 /* @var $tableSchema yii\db\TableSchema */
 /* @var $labels string[] list of attribute labels (name => label) */
 /* @var $rules string[] list of validation rules */
+/* @var $uses string[] list of use classes */
 /* @var $relations array list of relations (name => relation declaration) */
 
 echo "<?php\n";
@@ -22,6 +23,12 @@ echo "<?php\n";
 namespace <?= $generator->ns ?>;
 
 use Yii;
+<?php
+if (count($uses) > 0) {
+    echo 'use ' . join(";\nuse ", $uses) . ';';
+}
+?>
+
 
 /**
  * This is the model class for table "<?= $generator->generateTableName($tableName) ?>".
@@ -51,6 +58,7 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . 
         }
         return '<?= $generator->generateTableName($tableName) ?>';
     }
+
 <?php if ($generator->db !== 'db'): ?>
 
     /**
@@ -62,12 +70,16 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . 
     }
 <?php endif; ?>
 
+<?php
+$rulesFinal = implode(",\n            ", $rules);
+$rulesFinal = preg_replace('~\'targetClass\' \=\> (\w+)Base\:\:class~', '\'targetClass\' => $1::class', $rulesFinal)
+?>
     /**
      * @inheritdoc
      */
     public function rules()
     {
-        return [<?= "\n            " . implode(",\n            ", $rules) . ",\n        " ?>];
+        return [<?= "\n            " . $rulesFinal . ",\n        " ?>];
     }
 
     /**
@@ -84,7 +96,7 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . 
 <?php foreach ($relations as $name => $relation): ?>
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return <?= str_replace('\base', '', '\\' . $generator->queryNs) .  '\\' . $relation[1] . 'Query'?>|\yii\db\ActiveQuery
      */
     public function get<?= $name ?>()
     {
@@ -92,17 +104,17 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . 
     }
 <?php endforeach; ?>
 <?php if ($queryClassName): ?>
-<?php
+    <?php
     $queryClassFullName = ($generator->ns === $generator->queryNs) ? $queryClassName : '\\' . $generator->queryNs . '\\' . $queryClassName;
     echo "\n";
-?>
+    ?>
     /**
      * @inheritdoc
-     * @return <?= $queryClassFullName ?> the active query used by this AR class.
+     * @return <?= str_replace(['\base', 'QueryBase'], ['', 'Query'], $queryClassFullName) ?> the active query used by this AR class.
      */
     public static function find()
     {
-        return new <?= $queryClassFullName ?>(get_called_class());
+        return new <?= str_replace(['\base', 'QueryBase'], ['', 'Query'], $queryClassFullName) ?>(get_called_class());
     }
 <?php endif; ?>
 <?php
@@ -176,11 +188,19 @@ if (count($singularRelations)) {
 if (count($pluralRelations)) {
     $i = 0;
     foreach ($pluralRelations as $relationName => $relation) {
-        $pluralKeys = [];
-        $paramKeys = [];
-        echo '
+        if (preg_match('/Settings/', $relationName)) {
+            $relClass = $relation['nsClassName'];
+            $exludeKeys = [];
+            $codeKeys = explode(',', str_replace(['[', ']', "'", ' => '], ['','','',','], $relation['linkCode']));
+            $pluralKeys = array_diff($relClass::primaryKey(), [$codeKeys[0]]);
+
+            $paramKeys = [];
+            foreach ($pluralKeys as $pluKey) {
+                $paramKeys[] = '@param int $' . $pluKey;
+            }
+            echo '
     /**
-     * ' . $paramKeys . '
+     * ' . join("\n     * ", $paramKeys) . '
      * @return ' . $relationName . '
      * @throws
      */
@@ -189,6 +209,7 @@ if (count($pluralRelations)) {
         return $this->oneOff(\'' . lcfirst($relationName) . '\', compact(\'' . join("', '", $pluralKeys) . '\'));
     }
 ';
+        }
     }
 }
 

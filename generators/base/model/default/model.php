@@ -92,9 +92,7 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . 
         ];
     }
 <?php foreach ($relations as $name => $relation): ?>
-<?php
 
-    ?>
     /**
      * @return \yii\db\ActiveQuery
      */

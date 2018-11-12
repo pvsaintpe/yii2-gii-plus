@@ -28,16 +28,16 @@ echo "<?php\n";
 namespace <?= $generator->queryNs ?>;
 
 /**
- * This is the ActiveQuery class for [[\<?= str_replace('\base', '', $generator->ns) . '\\' . str_replace('Base', '',$modelClassName)?>]].
+ * This is the ActiveQuery class for [[<?= $modelFullClassName ?>]].
  *
- * @see \<?= str_replace('\base', '', $generator->ns) . '\\' . str_replace('Base', '',$modelClassName) . "\n" ?>
+ * @see <?= $modelFullClassName . "\n" ?>
  */
 class <?= $className ?> extends <?= '\\' . ltrim($generator->queryBaseClass, '\\') . "\n" ?>
 {
 
     /**
      * @inheritdoc
-     * @return \<?= str_replace('\base', '', $generator->ns) . '\\' . str_replace('Base', '',$modelClassName) ?>[]|array
+     * @return <?= $modelFullClassName ?>[]|array
      */
     public function all($db = null)
     {
@@ -46,7 +46,7 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->queryBaseClass, '\\
 
     /**
      * @inheritdoc
-     * @return \<?= str_replace('\base', '', $generator->ns) . '\\' . str_replace('Base', '',$modelClassName) ?>|array|null
+     * @return <?= $modelFullClassName ?>|array|null
      */
     public function one($db = null)
     {

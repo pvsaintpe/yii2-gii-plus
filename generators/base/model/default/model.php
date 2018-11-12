@@ -24,11 +24,10 @@ namespace <?= $generator->ns ?>;
 
 use Yii;
 <?php
-if (count($uses) > 0) {
-    echo 'use ' . join(";\nuse ", $uses) . ';';
-}
+//if (count($uses) > 0) {
+//    echo 'use ' . join(";\nuse ", $uses) . ';';
+//}
 ?>
-
 
 /**
  * This is the model class for table "<?= $generator->generateTableName($tableName) ?>".
@@ -71,15 +70,15 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . 
 <?php endif; ?>
 
 <?php
-$rulesFinal = implode(",\n            ", $rules);
-$rulesFinal = preg_replace('~\'targetClass\' \=\> (\w+)Base\:\:class~', '\'targetClass\' => $1::class', $rulesFinal)
+//$rulesFinal = implode(",\n            ", $rules);
+//$rulesFinal = preg_replace('~\'targetClass\' \=\> (\w+)Base\:\:class~', '\'targetClass\' => $1::class', $rulesFinal)
 ?>
     /**
      * @inheritdoc
      */
     public function rules()
     {
-        return [<?= "\n            " . $rulesFinal . ",\n        " ?>];
+        return [<?= "\n            " . implode(",\n            ", $rules) . ",\n        " ?>];
     }
 
     /**
@@ -94,9 +93,11 @@ $rulesFinal = preg_replace('~\'targetClass\' \=\> (\w+)Base\:\:class~', '\'targe
         ];
     }
 <?php foreach ($relations as $name => $relation): ?>
-
+<?php
+    //<?= str_replace('\base', '', '\\' . $generator->queryNs) .  '\\' . $relation[1] . 'Query'?>|
+    ?>
     /**
-     * @return <?= str_replace('\base', '', '\\' . $generator->queryNs) .  '\\' . $relation[1] . 'Query'?>|\yii\db\ActiveQuery
+     * @return \yii\db\ActiveQuery
      */
     public function get<?= $name ?>()
     {
@@ -110,11 +111,11 @@ $rulesFinal = preg_replace('~\'targetClass\' \=\> (\w+)Base\:\:class~', '\'targe
     ?>
     /**
      * @inheritdoc
-     * @return <?= str_replace(['\base', 'QueryBase'], ['', 'Query'], $queryClassFullName) ?> the active query used by this AR class.
+     * @return <?= $queryClassFullName ?> the active query used by this AR class.
      */
     public static function find()
     {
-        return new <?= str_replace(['\base', 'QueryBase'], ['', 'Query'], $queryClassFullName) ?>(get_called_class());
+        return new <?= $queryClassFullName ?>(get_called_class());
     }
 <?php endif; ?>
 <?php

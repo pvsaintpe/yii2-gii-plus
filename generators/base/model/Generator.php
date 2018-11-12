@@ -691,7 +691,49 @@ class Generator extends GiiModelGenerator
             $params['pluralRelations'] = [];
         }
 
-        return parent::render($template, $params);
+        $output = parent::render($template, $params);
+        switch ($template) {
+            case 'model.php':
+                // fix uses
+                if (array_key_exists($tableName, $this->relationUses) && $this->relationUses[$tableName]) {
+                    $uses = array_unique($this->relationUses[$tableName]);
+                    Helper::sortUses($uses);
+                    $output = str_replace('use Yii;', 'use Yii;' . "\n" . 'use ' . implode(';' . "\n" . 'use ', $uses) . ';', $output);
+                }
+                // fix rules
+                $output = preg_replace('~\'targetClass\' \=\> (\w+)Base\:\:class~', '\'targetClass\' => $1::class', $output);
+                // fix relations
+                $nsClassName = $this->ns . '\\' . $params['className'];
+                if (class_exists($nsClassName) && is_subclass_of($nsClassName, 'pvsaintpe\boost\db\ActiveRecord')) {
+                    $model = new $nsClassName;
+                    $output = preg_replace_callback('~@return \\\\(yii\\\\db\\\\ActiveQuery)\s+\*/\s+public function ([^\(]+)\(\)~', function ($match) use ($model) {
+                        if (method_exists($model, $match[2])) {
+                            return str_replace($match[1], get_class(call_user_func([$model, $match[2]])) . '|\\' . $match[1], $match[0]);
+                        } else {
+                            return $match[0];
+                        }
+                    }, $output);
+                }
+                break;
+        }
+
+        $output = preg_replace_callback('~(@return |return new )\\\\((?:\w+\\\\)*\w+\\\\query)\\\\base\\\\(\w+Query)Base~', function ($match) {
+            $nsClassName = $match[2] . '\\' . $match[3];
+            if (class_exists($nsClassName)) {
+                return $match[1] . '\\' . $nsClassName;
+            } else {
+                return $match[0];
+            }
+        }, $output);
+        $output = preg_replace_callback('~(@see | @return |\[\[)\\\\((?:\w+\\\\)*\w+)\\\\base\\\\(\w+)Base~', function ($match) {
+            $nsClassName = $match[2] . '\\' . $match[3];
+            if (class_exists($nsClassName)) {
+                return $match[1] . '\\' . $nsClassName;
+            } else {
+                return $match[0];
+            }
+        }, $output);
+        return $output;
         //
 //        $output = parent::render($template, $params);
 //        switch ($template) {

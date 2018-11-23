@@ -564,23 +564,23 @@
         },
         {
             "name": "pvsaintpe/yii2-gii",
-            "version": "2.1.2",
+            "version": "2.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pvsaintpe/yii2-gii.git",
-                "reference": "f46565237b84c3c4fc714f6559fc01469c3a18b8"
+                "reference": "ac5bf2187dd62ba8a45f6cd29db9f3e173427cc3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pvsaintpe/yii2-gii/zipball/f46565237b84c3c4fc714f6559fc01469c3a18b8",
-                "reference": "f46565237b84c3c4fc714f6559fc01469c3a18b8",
+                "url": "https://api.github.com/repos/pvsaintpe/yii2-gii/zipball/ac5bf2187dd62ba8a45f6cd29db9f3e173427cc3",
+                "reference": "ac5bf2187dd62ba8a45f6cd29db9f3e173427cc3",
                 "shasum": ""
             },
             "require": {
                 "bower-asset/typeahead.js": "0.10.* | ~0.11.0",
-                "phpspec/php-diff": ">=1.0.2",
-                "yiisoft/yii2": ">=2.0.15",
-                "yiisoft/yii2-bootstrap": "~2.0"
+                "phpspec/php-diff": "1.*",
+                "yiisoft/yii2": "2.*",
+                "yiisoft/yii2-bootstrap": "2.*"
             },
             "type": "yii2-extension",
             "extra": {
@@ -610,7 +610,7 @@
                 "gii",
                 "yii2"
             ],
-            "time": "2018-11-12T21:03:37+00:00"
+            "time": "2018-11-23T23:56:15+00:00"
         },
         {
             "name": "yiisoft/yii2",

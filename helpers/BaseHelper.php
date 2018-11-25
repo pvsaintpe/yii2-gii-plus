@@ -10,12 +10,12 @@ class BaseHelper
 {
 
     /**
-     * @var Connection[]
+     * @var Connection[]|\pvsaintpe\db\components\Connection[]
      */
     protected static $dbConnections;
 
     /**
-     * @return Connection[]
+     * @return Connection[]|\pvsaintpe\db\components\Connection[]
      */
     public static function getDbConnections()
     {
@@ -40,7 +40,7 @@ class BaseHelper
     }
 
     /**
-     * @param Connection $db
+     * @param Connection|\pvsaintpe\db\components\Connection $db
      * @param bool $refresh
      * @return string[]
      */

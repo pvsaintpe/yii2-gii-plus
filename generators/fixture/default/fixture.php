@@ -14,7 +14,7 @@ use yii\helpers\Inflector;
 /* @var $baseFixtureName string */
 /* @var $baseFixtureClass string */
 /* @var $dataFile string */
-/* @var $tableSchema pvsaintpe\gii\plus\db\TableSchema */
+/* @var $tableSchema pvsaintpe\db\components\TableSchema */
 
 $uses = [
     $baseFixtureClass
@@ -72,7 +72,7 @@ if (count($backDepends)) {
 echo '
     /*[
 ';
-/* @var $columns pvsaintpe\gii\plus\db\ColumnSchema[] */
+/* @var $columns pvsaintpe\db\components\ColumnSchema[] */
 $columns = array_values($tableSchema->columns);
 foreach ($columns as $i => $column) {
     $comma = ($i < count($columns) - 1) ? ',' : '';

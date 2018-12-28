@@ -39,6 +39,11 @@ class Generator extends GiiGenerator
     public $dataPath;
 
     /**
+     * @var string
+     */
+    public $namespaceString = 'app,backend,common,console,frontend';
+
+    /**
      * @inheritdoc
      */
     public function init()
@@ -47,6 +52,7 @@ class Generator extends GiiGenerator
         if (Yii::getAlias('@common', false)) {
             $this->modelClass = 'common\models\*';
         }
+        Helper::setNamespaceString($this->namespaceString);
     }
 
     /**
@@ -64,7 +70,7 @@ class Generator extends GiiGenerator
     {
         return array_merge(parent::rules(), [
             [['modelClass', 'fixtureNs', 'fixtureBaseClass', 'dataPath'], 'filter', 'filter' => 'trim'],
-            [['modelClass', 'fixtureBaseClass'], 'required'],
+            [['modelClass', 'fixtureBaseClass', 'namespaceString'], 'required'],
             [['modelClass'], 'match', 'pattern' => '~^(?:\w+\\\\)+(?:\w+|\*)$~'],
             [['fixtureNs'], 'default', 'value' => function (Generator $model, $attribute) {
                 return preg_replace('~\\\\models\\\\(?:\w+|\*)$~', '\fixtures', $model->modelClass);
@@ -92,6 +98,7 @@ class Generator extends GiiGenerator
     public function stickyAttributes()
     {
         return array_merge(parent::stickyAttributes(), [
+            'namespaceString',
             'modelClass',
             'fixtureNs',
             'fixtureBaseClass',

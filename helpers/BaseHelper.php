@@ -15,6 +15,27 @@ class BaseHelper
     protected static $dbConnections;
 
     /**
+     * @var string
+     */
+    protected static $namespaceString = 'app,backend,common,console,frontend';
+
+    /**
+     * @return array
+     */
+    protected static function getNamespaces()
+    {
+        return explode(',', static::$namespaceString);
+    }
+
+    /**
+     * @param $namespaceString
+     */
+    public static function setNamespaceString($namespaceString)
+    {
+        static::$namespaceString = $namespaceString;
+    }
+
+    /**
      * @return Connection[]
      */
     public static function getDbConnections()
@@ -66,7 +87,7 @@ class BaseHelper
     {
         if (is_null(static::$modelNamespaces)) {
             static::$modelNamespaces = [];
-            foreach (['app', 'backend', 'common', 'console', 'frontend'] as $appNs) {
+            foreach (static::getNamespaces() as $appNs) {
                 $appPath = Yii::getAlias('@' . $appNs, false);
                 if ($appPath) {
                     static::$modelNamespaces[] = $appNs . '\models';

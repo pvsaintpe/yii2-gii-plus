@@ -44,7 +44,6 @@ class Generator extends GiiModelGenerator
         if (Yii::getAlias('@common', false)) {
             $this->ns = 'common\models\base';
         }
-        Helper::setNamespaceString($this->namespaceString);
     }
 
     /**
@@ -261,6 +260,7 @@ class Generator extends GiiModelGenerator
      */
     public function generate()
     {
+        Helper::setNamespaceString($this->namespaceString);
         $this->commonBaseClass = $this->baseClass;
         $this->commonQueryBaseClass = $this->queryBaseClass;
         $this->relationsDone = false;

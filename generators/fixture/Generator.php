@@ -52,7 +52,6 @@ class Generator extends GiiGenerator
         if (Yii::getAlias('@common', false)) {
             $this->modelClass = 'common\models\*';
         }
-        Helper::setNamespaceString($this->namespaceString);
     }
 
     /**
@@ -131,6 +130,7 @@ class Generator extends GiiGenerator
      */
     public function generate()
     {
+        Helper::setNamespaceString($this->namespaceString);
         $files = [];
         if (preg_match('~^((?:\w+\\\\)*\w+)\\\\(\w+|\*)$~', $this->modelClass, $match)) {
             $pattern = Yii::getAlias('@' . str_replace('\\', '/', $match[1])) . '/' . $match[2] . '.php';

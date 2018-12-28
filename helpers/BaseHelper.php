@@ -15,7 +15,6 @@ class BaseHelper
     protected static $dbConnections;
 
     /**
-<<<<<<< HEAD
      * @var string
      */
     protected static $namespaceString = 'app,backend,common,console,frontend';
@@ -37,10 +36,7 @@ class BaseHelper
     }
 
     /**
-     * @return Connection[]
-=======
      * @return Connection[]|\pvsaintpe\db\components\Connection[]
->>>>>>> ba4df11c8f801dcbe9393e0f41c7d64e501047f1
      */
     public static function getDbConnections()
     {

@@ -15,7 +15,7 @@ use yii\helpers\Inflector;
 /* @var $queryClass string|pvsaintpe\boost\db\ActiveQuery */
 /* @var $baseQueryName string */
 /* @var $baseQueryClass string|pvsaintpe\boost\db\ActiveQuery */
-/* @var $tableSchema pvsaintpe\gii\plus\db\TableSchema */
+/* @var $tableSchema pvsaintpe\db\components\TableSchema */
 
 $uses = [
     $baseQueryClass

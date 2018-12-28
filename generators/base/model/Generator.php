@@ -273,7 +273,7 @@ class Generator extends GiiModelGenerator
 
     /**
      * @inheritdoc
-     * @param \pvsaintpe\gii\plus\db\TableSchema $table
+     * @param \pvsaintpe\db\components\TableSchema $table
      */
     public function generateRules($table)
     {
@@ -489,7 +489,7 @@ class Generator extends GiiModelGenerator
         $this->pluralRelations = [];
         $generatedRelations = parent::generateRelations();
         foreach ($generatedRelations as $tableName => $tableRelations) {
-            /* @var $tableSchema \pvsaintpe\gii\plus\db\TableSchema */
+            /* @var $tableSchema \pvsaintpe\db\components\TableSchema */
             $tableSchema = $db->getTableSchema($tableName);
             $relations[$tableName] = [];
             $this->relationUses[$tableName] = [];
@@ -602,7 +602,7 @@ class Generator extends GiiModelGenerator
 
     /**
      * @inheritdoc
-     * @param \pvsaintpe\gii\plus\db\TableSchema $table
+     * @param \pvsaintpe\db\components\TableSchema $table
      */
     protected function generateRelationName($relations, $table, $key, $multiple)
     {

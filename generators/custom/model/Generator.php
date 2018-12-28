@@ -96,7 +96,7 @@ class Generator extends GiiGenerator
                 $queryClass = $queryNs . '\\' . $queryName;
                 $baseQueryName = $modelName . 'QueryBase';
                 $baseQueryClass = $queryNs . '\base\\' . $baseQueryName;
-                /* @var $tableSchema \pvsaintpe\gii\plus\db\TableSchema */
+                /* @var $tableSchema \pvsaintpe\db\components\TableSchema */
                 $tableSchema = $baseModelClass::getTableSchema();
                 $params = [
                     'ns' => $ns,

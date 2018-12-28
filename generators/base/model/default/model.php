@@ -121,7 +121,7 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . 
 /* @var $tableName string */
 /* @var $className string */
 /* @var $queryClassName string */
-/* @var $tableSchema pvsaintpe\gii\plus\db\TableSchema */
+/* @var $tableSchema pvsaintpe\db\components\TableSchema */
 /* @var $labels string[] */
 /* @var $rules string[] */
 /* @var $relations array */

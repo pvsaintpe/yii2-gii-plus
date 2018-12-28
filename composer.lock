@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5cd1a8f7807781b76090def9a29869a2",
+    "content-hash": "5b5e0c772ee71fa994e4e3481ebde904",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -418,16 +418,16 @@
         },
         {
             "name": "psr/log",
-            "version": "1.0.2",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
-                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d"
+                "reference": "6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
-                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd",
+                "reference": "6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd",
                 "shasum": ""
             },
             "require": {
@@ -461,26 +461,27 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2016-10-10T12:19:37+00:00"
+            "time": "2018-11-20T15:27:04+00:00"
         },
         {
             "name": "pvsaintpe/yii2-boost",
-            "version": "2.0.2",
+            "version": "2.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pvsaintpe/yii2-boost.git",
-                "reference": "b3d82d579e57dbcfe6b16c1a9ec49f5f08546d45"
+                "reference": "f8b0af8d9a38f68b9c8891e94f97dcfe2788c4e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pvsaintpe/yii2-boost/zipball/b3d82d579e57dbcfe6b16c1a9ec49f5f08546d45",
-                "reference": "b3d82d579e57dbcfe6b16c1a9ec49f5f08546d45",
+                "url": "https://api.github.com/repos/pvsaintpe/yii2-boost/zipball/f8b0af8d9a38f68b9c8891e94f97dcfe2788c4e3",
+                "reference": "f8b0af8d9a38f68b9c8891e94f97dcfe2788c4e3",
                 "shasum": ""
             },
             "require": {
                 "firephp/firephp-core": "*",
                 "psr/log": "*",
-                "yiisoft/yii2": ">=2.0.4"
+                "pvsaintpe/yii2-db-plus": "*",
+                "yiisoft/yii2": "2.*"
             },
             "type": "yii2-extension",
             "extra": {
@@ -510,27 +511,76 @@
                 "gii",
                 "yii2"
             ],
-            "time": "2018-10-05T10:30:14+00:00"
+            "time": "2018-11-24T00:01:59+00:00"
         },
         {
-            "name": "pvsaintpe/yii2-gii",
-            "version": "2.1.1",
+            "name": "pvsaintpe/yii2-db-plus",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/pvsaintpe/yii2-gii.git",
-                "reference": "a09c6c988c7db976c4ad13e4535a780a5a1a15a8"
+                "url": "https://github.com/pvsaintpe/yii2-db-plus.git",
+                "reference": "ac670a1aa0975254db7944155b267a699ccdb260"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pvsaintpe/yii2-gii/zipball/a09c6c988c7db976c4ad13e4535a780a5a1a15a8",
-                "reference": "a09c6c988c7db976c4ad13e4535a780a5a1a15a8",
+                "url": "https://api.github.com/repos/pvsaintpe/yii2-db-plus/zipball/ac670a1aa0975254db7944155b267a699ccdb260",
+                "reference": "ac670a1aa0975254db7944155b267a699ccdb260",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0.0",
+                "pvsaintpe/yii2-boost": "*",
+                "yiisoft/yii2": "2.*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "asset-installer-paths": {
+                    "npm-asset-library": "vendor/npm",
+                    "bower-asset-library": "vendor/bower"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "pvsaintpe\\db\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pavel Veselov",
+                    "email": "pvsaintpe@icloud.com"
+                }
+            ],
+            "description": "Package",
+            "keywords": [
+                "code generator",
+                "gii",
+                "yii2"
+            ],
+            "time": "2018-11-25T11:56:47+00:00"
+        },
+        {
+            "name": "pvsaintpe/yii2-gii",
+            "version": "2.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pvsaintpe/yii2-gii.git",
+                "reference": "ac5bf2187dd62ba8a45f6cd29db9f3e173427cc3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pvsaintpe/yii2-gii/zipball/ac5bf2187dd62ba8a45f6cd29db9f3e173427cc3",
+                "reference": "ac5bf2187dd62ba8a45f6cd29db9f3e173427cc3",
                 "shasum": ""
             },
             "require": {
                 "bower-asset/typeahead.js": "0.10.* | ~0.11.0",
-                "phpspec/php-diff": ">=1.0.2",
-                "yiisoft/yii2": ">=2.0.15",
-                "yiisoft/yii2-bootstrap": "~2.0"
+                "phpspec/php-diff": "1.*",
+                "yiisoft/yii2": "2.*",
+                "yiisoft/yii2-bootstrap": "2.*"
             },
             "type": "yii2-extension",
             "extra": {
@@ -560,7 +610,7 @@
                 "gii",
                 "yii2"
             ],
-            "time": "2018-10-05T17:21:58+00:00"
+            "time": "2018-11-23T23:56:15+00:00"
         },
         {
             "name": "yiisoft/yii2",

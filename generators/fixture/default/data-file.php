@@ -13,7 +13,7 @@ use yii\helpers\Inflector;
 /* @var $baseFixtureName string */
 /* @var $baseFixtureClass string|pvsaintpe\boost\test\ActiveFixture */
 /* @var $dataFile string */
-/* @var $tableSchema pvsaintpe\gii\plus\db\TableSchema */
+/* @var $tableSchema pvsaintpe\db\components\TableSchema */
 
 echo '<?php
 
@@ -24,7 +24,7 @@ echo '<?php
 return [
     /*[
 ';
-/* @var $columns pvsaintpe\gii\plus\db\ColumnSchema[] */
+/* @var $columns pvsaintpe\db\components\ColumnSchema[] */
 $columns = array_values($tableSchema->columns);
 foreach ($columns as $i => $column) {
     $comma = ($i < count($columns) - 1) ? ',' : '';

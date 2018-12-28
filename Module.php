@@ -19,8 +19,8 @@ class Module extends GiiModule
         foreach (Helper::getDbConnections() as $db) {
             if (in_array($db->getDriverName(), ['mysql', 'mysqli'])) {
                 $db->schemaMap = array_merge($db->schemaMap, [
-                    'mysql' => 'pvsaintpe\gii\plus\db\mysql\Schema',
-                    'mysqli' => 'pvsaintpe\gii\plus\db\mysql\Schema'
+                    'mysql' => 'pvsaintpe\db\components\mysql\Schema',
+                    'mysqli' => 'pvsaintpe\db\components\mysql\Schema'
                 ]);
             }
         }

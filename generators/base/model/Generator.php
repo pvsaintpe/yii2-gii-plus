@@ -307,7 +307,7 @@ class Generator extends GiiModelGenerator
                 }
             }
             if ($column->getHasDateFormat()) {
-                $dateFormats[$column->getDateFormat()][] = $column->name;
+                //$dateFormats[$column->getDateFormat()][] = $column->name;
             }
             if ($column->getHasPattern()) {
                 $matchPatterns[$column->getPattern()][] = $column->name;

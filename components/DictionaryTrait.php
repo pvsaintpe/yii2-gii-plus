@@ -17,7 +17,7 @@ trait DictionaryTrait
     public static function getMessages($params = [])
     {
         $messages = [];
-        $className = get_called_class();
+        $className = self::class;
         $doc = new ConstDoc($className);
         $comments = $doc->getDocComments();
         foreach ($comments as $constName => $comment) {

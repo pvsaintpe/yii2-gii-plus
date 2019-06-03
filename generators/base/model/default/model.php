@@ -6,6 +6,7 @@
 use yii\helpers\Inflector;
 use pvsaintpe\gii\plus\helpers\Helper;
 
+
 /* @var $this yii\web\View */
 /* @var $generator pvsaintpe\gii\generators\model\Generator */
 /* @var $tableName string full table name */
@@ -16,6 +17,8 @@ use pvsaintpe\gii\plus\helpers\Helper;
 /* @var $rules string[] list of validation rules */
 /* @var $uses string[] list of use classes */
 /* @var $relations array list of relations (name => relation declaration) */
+/* @var $isDictionary bool */
+/* @var $constants */
 
 echo "<?php\n";
 ?>
@@ -23,6 +26,10 @@ echo "<?php\n";
 namespace <?= $generator->ns ?>;
 
 use Yii;
+<?php if ($isDictionary) : ?>
+    use pvsaintpe\gii\plus\components\DictionaryTrait;
+    use pvsaintpe\gii\plus\components\DictionaryInterface;
+<?php endif; ?>
 <?php
 //if (count($uses) > 0) {
 //    echo 'use ' . join(";\nuse ", $uses) . ';';
@@ -30,41 +37,65 @@ use Yii;
 ?>
 
 /**
- * This is the model class for table "<?= $generator->generateTableName($tableName) ?>".
- *
+* This is the model class for table "<?= $generator->generateTableName($tableName) ?>".
+*
 <?php foreach ($tableSchema->columns as $column): ?>
- * @property <?= "{$column->phpType} \${$column->name}\n" ?>
+    * @property <?= "{$column->phpType} \${$column->name}\n" ?>
 <?php endforeach; ?>
 <?php if (!empty($relations)): ?>
- *
-<?php foreach ($relations as $name => $relation): ?>
- * @property <?= $relation[1] . ($relation[2] ? '[]' : '') . ' $' . lcfirst($name) . "\n" ?>
-<?php endforeach; ?>
+    *
+    <?php foreach ($relations as $name => $relation): ?>
+        * @property <?= $relation[1] . ($relation[2] ? '[]' : '') . ' $' . lcfirst($name) . "\n" ?>
+    <?php endforeach; ?>
 <?php endif; ?>
- */
-class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . "\n" ?>
+*/
+class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') ?><?= $isDictionary ? ' implements DictionaryInterface ' . "\n" : "\n" ?>
 {
+<?php if ($isDictionary) : ?>
+    use DictionaryTrait;
+
+    <?php foreach ($constants as $key => $value) : ?>
+        /**
+        * <?= $value['name'] . "\n"; ?>
+        * @message const
+        */
+        const <?= $value['code']; ?> = <?= $key; ?>; <?= "\n"?>
+    <?php endforeach; ?>
+
     /**
-     * @inheritdoc
-     */
-    public static function tableName()
+    * @return array
+    */
+    public static function getConstants()
     {
-        if (YII_ENV_TEST) {
-            $tableName = preg_replace_callback('/^([^.]*)(\..*)$/', function($matches) {
-                return $matches[1] . '_test' . $matches[2];
-            }, '<?= $generator->generateTableName($tableName) ?>');
-            return $tableName;
-        }
-        return '<?= $generator->generateTableName($tableName) ?>';
+    return [
+    <?php foreach ($constants as $key => $value) : ?>
+        <?= $key; ?> => <?= '"' . $value['code'] . '",'; ?> <?= "\n"?>
+    <?php endforeach; ?>
+    ];
     }
+
+<?php endif; ?>
+/**
+* @inheritdoc
+*/
+public static function tableName()
+{
+if (YII_ENV_TEST) {
+$tableName = preg_replace_callback('/^([^.]*)(\..*)$/', function($matches) {
+return $matches[1] . '_test' . $matches[2];
+}, '<?= $generator->generateTableName($tableName) ?>');
+return $tableName;
+}
+return '<?= $generator->generateTableName($tableName) ?>';
+}
 <?php if ($generator->db !== 'db'): ?>
 
     /**
-     * @return \yii\db\Connection the database connection used by this AR class.
-     */
+    * @return \yii\db\Connection the database connection used by this AR class.
+    */
     public static function getDb()
     {
-        return Yii::$app->get('<?= $generator->db ?>');
+    return Yii::$app->get('<?= $generator->db ?>');
     }
 <?php endif; ?>
 
@@ -72,47 +103,47 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . 
 //$rulesFinal = implode(",\n            ", $rules);
 //$rulesFinal = preg_replace('~\'targetClass\' \=\> (\w+)Base\:\:class~', '\'targetClass\' => $1::class', $rulesFinal)
 ?>
-    /**
-     * @inheritdoc
-     */
-    public function rules()
-    {
-        return [<?= "\n            " . implode(",\n            ", $rules) . ",\n        " ?>];
-    }
+/**
+* @inheritdoc
+*/
+public function rules()
+{
+return [<?= "\n            " . implode(",\n            ", $rules) . ",\n        " ?>];
+}
 
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels()
-    {
-        return [
+/**
+* @inheritdoc
+*/
+public function attributeLabels()
+{
+return [
 <?php foreach ($labels as $name => $label): ?>
-            <?= "'$name' => " . $generator->generateString($label) . ",\n" ?>
+    <?= "'$name' => " . $generator->generateString($label) . ",\n" ?>
 <?php endforeach; ?>
-        ];
-    }
+];
+}
 <?php foreach ($relations as $name => $relation): ?>
 
     /**
-     * @return \yii\db\ActiveQuery
-     */
+    * @return \yii\db\ActiveQuery
+    */
     public function get<?= $name ?>()
     {
-        <?= $relation[0] . "\n" ?>
+    <?= $relation[0] . "\n" ?>
     }
 <?php endforeach; ?>
 <?php if ($queryClassName): ?>
-<?php
+    <?php
     $queryClassFullName = ($generator->ns === $generator->queryNs) ? $queryClassName : '\\' . $generator->queryNs . '\\' . $queryClassName;
     echo "\n";
     ?>
     /**
-     * @inheritdoc
-     * @return <?= $queryClassFullName ?> the active query used by this AR class.
-     */
+    * @inheritdoc
+    * @return <?= $queryClassFullName ?> the active query used by this AR class.
+    */
     public static function find()
     {
-        return new <?= $queryClassFullName ?>(get_called_class());
+    return new <?= $queryClassFullName ?>(get_called_class());
     }
 <?php endif; ?>
 <?php

@@ -4,6 +4,8 @@ namespace pvsaintpe\gii\plus\generators\base\model;
 
 use yii\base\ErrorException;
 use yii\db\Expression;
+use yii\db\Connection;
+use yii\db\TableSchema;
 use pvsaintpe\gii\generators\model\Generator as GiiModelGenerator;
 use pvsaintpe\gii\plus\helpers\Helper;
 use yii\helpers\Html;
@@ -737,5 +739,45 @@ class Generator extends GiiModelGenerator
             }
         }, $output);
         return $output;
+    }
+
+    /**
+     * @param TableSchema $tableSchema
+     * @return bool
+     */
+    protected function isDictionary($tableSchema)
+    {
+        if (in_array('code', $tableSchema->columnNames) && in_array('name', $tableSchema->columnNames)) {
+            if (count($tableSchema->primaryKey) == 1 && $tableSchema->primaryKey[0] == 'id') {
+                $pkOptions = $tableSchema->columns['id'];
+
+                if ($pkOptions->dbType === 'tinyint(3) unsigned') {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @param TableSchema $tableSchema
+     * @param $tableName
+     * @param Connection $db
+     * @return array
+     */
+    protected function generateConstants($db, $tableSchema, $tableName)
+    {
+        $constants = [];
+
+        if ($this->isDictionary($tableSchema)) {
+            $data = $db->createCommand("SELECT * FROM $tableName")->queryAll();
+
+            foreach ($data as $item) {
+                $constants[$item['id']] = ['code' => strtoupper($item['code']), 'name' => $item['name']];
+            }
+        }
+
+        return $constants;
     }
 }

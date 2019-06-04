@@ -16,17 +16,13 @@ trait DictionaryTrait
      */
     public static function getMessages($params = [])
     {
-        $messages = [];
-        $className = self::class;
-        $doc = new ConstDoc($className);
-        $comments = $doc->getDocComments();
-        foreach ($comments as $constName => $comment) {
-            $code = constant(static::class . '::' . $constName);
-            if (!empty($comment['comment'])) {
-                $category = $comment['params']['message'] ?: 'message';
-                $messages[$code] = Yii::t($category, $comment['comment'], $params);
+        $messages = [];;
+        foreach (self::getConstants() as $id => $constName) {
+            if (isset(self::getConstantLabels($params)[$constName])) {
+                $messages[$id] = self::getConstantLabels($params)[$constName];
             }
         }
+
         return $messages;
     }
 

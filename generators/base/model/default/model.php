@@ -55,10 +55,6 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') ?>
     use DictionaryTrait;
 
 <?php foreach ($constants as $key => $value) : ?>
-     /**
-      * <?= $value['name'] . "\n"; ?>
-      * @message const
-      */
      const <?= $value['code']; ?> = <?= $key; ?>; <?= "\n"?>
 <?php endforeach; ?>
 
@@ -70,6 +66,19 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') ?>
         return [
     <?php foreach ($constants as $key => $value) : ?>
         <?= $key; ?> => <?= '"' . $value['code'] . '",'; ?> <?= "\n"?>
+    <?php endforeach; ?>
+    ];
+    }
+
+    /**
+     * @param string $category
+     * @return array
+     */
+    public static function getConstantLabels($category)
+    {
+        return [
+    <?php foreach ($constants as $key => $value) : ?>
+        <?= '"' . $value['code'] . '"'?> => Yii::t($category, <?= '"' . $value['name'] . '"),'; ?> <?= "\n"?>
     <?php endforeach; ?>
     ];
     }

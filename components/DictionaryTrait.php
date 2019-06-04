@@ -18,9 +18,7 @@ trait DictionaryTrait
     {
         $messages = [];;
         foreach (self::getConstants() as $id => $constName) {
-            if (isset(self::getConstantLabels($params)[$constName])) {
-                $messages[$id] = self::getConstantLabels($params)[$constName];
-            }
+            $messages[$id] = static::getConstantLabels($params)[$constName] ?? $id;
         }
 
         return $messages;

@@ -16,7 +16,7 @@ trait DictionaryTrait
      */
     public static function getMessages($params = [])
     {
-        $messages = [];;
+        $messages = [];
         foreach (self::getConstants() as $id => $constName) {
             $messages[$id] = static::getConstantLabels($params)[$constName] ?? $id;
         }

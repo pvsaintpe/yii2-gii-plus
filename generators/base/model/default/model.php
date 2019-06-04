@@ -71,14 +71,14 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') ?>
     }
 
     /**
-     * @param string $category
+     * @param array $params
      * @return array
      */
-    public static function getConstantLabels($category)
+    public static function getConstantLabels($params)
     {
         return [
     <?php foreach ($constants as $key => $value) : ?>
-        <?= '"' . $value['code'] . '"'?> => Yii::t($category, <?= '"' . $value['name'] . '"),'; ?> <?= "\n"?>
+        <?= '"' . $value['code'] . '"'?> => Yii::t('const', <?= '"' . $value['name'] . '", $params),'; ?> <?= "\n"?>
     <?php endforeach; ?>
     ];
     }

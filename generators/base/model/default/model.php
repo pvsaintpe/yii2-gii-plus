@@ -6,6 +6,7 @@
 use yii\helpers\Inflector;
 use pvsaintpe\gii\plus\helpers\Helper;
 
+
 /* @var $this yii\web\View */
 /* @var $generator pvsaintpe\gii\generators\model\Generator */
 /* @var $tableName string full table name */
@@ -16,6 +17,8 @@ use pvsaintpe\gii\plus\helpers\Helper;
 /* @var $rules string[] list of validation rules */
 /* @var $uses string[] list of use classes */
 /* @var $relations array list of relations (name => relation declaration) */
+/* @var $isDictionary bool */
+/* @var $constants */
 
 echo "<?php\n";
 ?>
@@ -23,6 +26,10 @@ echo "<?php\n";
 namespace <?= $generator->ns ?>;
 
 use Yii;
+<?php if ($isDictionary) : ?>
+use pvsaintpe\gii\plus\components\DictionaryTrait;
+use pvsaintpe\gii\plus\components\DictionaryInterface;
+<?php endif; ?>
 <?php
 //if (count($uses) > 0) {
 //    echo 'use ' . join(";\nuse ", $uses) . ';';
@@ -42,8 +49,41 @@ use Yii;
 <?php endforeach; ?>
 <?php endif; ?>
  */
-class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . "\n" ?>
+class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') ?><?= $isDictionary ? ' implements DictionaryInterface ' . "\n" : "\n" ?>
 {
+<?php if ($isDictionary) : ?>
+    use DictionaryTrait;
+
+<?php foreach ($constants as $key => $value) : ?>
+     const <?= $value['code']; ?> = <?= $key; ?>; <?= "\n"?>
+<?php endforeach; ?>
+
+    /**
+     * @return array
+     */
+    public static function getConstants()
+    {
+        return [
+    <?php foreach ($constants as $key => $value) : ?>
+        <?= $key; ?> => <?= '"' . $value['code'] . '",'; ?> <?= "\n"?>
+    <?php endforeach; ?>
+    ];
+    }
+
+    /**
+     * @param array $params
+     * @return array
+     */
+    public static function getConstantLabels($params)
+    {
+        return [
+    <?php foreach ($constants as $key => $value) : ?>
+        <?= '"' . $value['code'] . '"'?> => Yii::t('const', <?= '"' . $value['name'] . '", $params),'; ?> <?= "\n"?>
+    <?php endforeach; ?>
+    ];
+    }
+
+<?php endif; ?>
     /**
      * @inheritdoc
      */

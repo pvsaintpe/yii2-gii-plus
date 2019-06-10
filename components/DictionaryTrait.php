@@ -31,7 +31,7 @@ trait DictionaryTrait
      */
     public static function getMessage($code, $params = [])
     {
-        return static::getMessages($params)[$code] ?? null;
+        return static::getMessages($params)[strtoupper($code)] ?? null;
     }
 
     /**
@@ -49,7 +49,7 @@ trait DictionaryTrait
      */
     public static function getIdByCode($code)
     {
-        return array_search($code, self::getConstants());
+        return array_search(strtoupper($code), self::getConstants());
     }
 
     /**
